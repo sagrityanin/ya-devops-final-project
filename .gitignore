@@ -1,4 +1,4 @@
 venv
 app
 temp
-
+db_host/.env

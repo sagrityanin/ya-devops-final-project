@@ -1,0 +1,32 @@
+networks:
+  backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    internal: false
+    ipam:
+      driver: default
+      config:
+      - subnet: "10.5.0.0"
+
+volumes:
+  bingo_db:
+
+services:
+  bingoDB:
+    networks:
+      - backend
+    build: ./postgres
+
+    environment:
+      POSTGRES_DB: $POSTGRES_DB
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    ports:
+      - 5432:5432
+    volumes:
+      - bingo_db:/var/lib/postgresql/data
+      - ./postgres/config:/docker-entrypoint-initdb.d/
+    env_file:
+      - .env
+
