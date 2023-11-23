@@ -2,3 +2,9 @@ venv
 app_backup
 temp
 db_host/.env
+terraform/.terraform.lock.hcl
+terraform/s1_key.json
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/tf_key.json
+terraform/.terraform
