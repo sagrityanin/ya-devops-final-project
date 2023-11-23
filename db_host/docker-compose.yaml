@@ -17,7 +17,7 @@ services:
     container_name: bingo_db
     networks:
       - backend
-    build: ./postgres
+    image: cr.yandex/crps6iajan0jje7v30hd/bingo:db
     environment:
       POSTGRES_DB: $POSTGRES_DB
       POSTGRES_USER: $POSTGRES_USER
@@ -34,7 +34,7 @@ services:
     container_name: bingo_init
     networks:
       - backend
-    build: ./app
+    image: cr.yandex/crps6iajan0jje7v30hd/bingo:init
     depends_on:
       - bingo_db
     environment:
