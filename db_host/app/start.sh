@@ -13,7 +13,7 @@ postgres_cluster:
 EOF
 echo "Create config.yaml"
 cd /app
-sleep 10
+sleep 20
 echo "Start prepare db"
 ./bingo prepare_db
 export PGPASSWORD=$POSTGRES_PASSWORD

@@ -25,13 +25,19 @@ resource "yandex_vpc_security_group" "group1" {
     protocol    = "any"
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
-  egress {
-    description = "out "
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "Any"
-    v4_cidr_blocks = ["0.0.0.0/0"]
+  ingress {
+    description = "Allow in postgresql connection"
+    port   = 5432
+    protocol    = "tcp"
+    v4_cidr_blocks = ["10.5.0.0/24"]
   }
+  egress {
+    description = "Allow out postgresql connection"
+    port   = 5432
+    protocol    = "tcp"
+    v4_cidr_blocks = ["10.5.0.0/24"]
+  }
+  
   ingress {
     description = "dns"
     port   = 53

@@ -35,9 +35,11 @@ resource "yandex_compute_instance" "bingo-db" {
     preemptible = true
   }
   network_interface {
+    security_group_ids = ["${yandex_vpc_security_group.group1.id}",]
     subnet_id = yandex_vpc_subnet.foo.id
     nat = true
   }
+  name = "bingo-db"
   boot_disk {
     initialize_params {
       type = "network-hdd"
@@ -76,14 +78,15 @@ resource "yandex_compute_instance" "bingo-db" {
     }
     inline = [
       "cd /home/ubuntu",
-      "echo 'POSTGRES_PASSWORD=123qwe' | sudo tee -a /etc/environment",
-      "echo 'POSTGRES_USER=andrey' | sudo tee -a /etc/environment",
-      "echo 'POSTGRES_DB=bingo' | sudo tee -a /etc/environment",
-      "echo 'POSTGRES_HOST=bingo_db' | sudo tee -a /etc/environment",
-      "echo 'POSTGRES_PORT=5432' | sudo tee -a /etc/environment",
-      "env",
+      "echo 'POSTGRES_PASSWORD=${var.POSTGRES_PASSWORD}' | sudo tee -a /etc/environment >> /dev/null",
+      "echo 'POSTGRES_USER=${var.POSTGRES_USER}' | sudo tee -a /etc/environment >> /dev/null",
+      "echo 'POSTGRES_DB=${var.POSTGRES_DB}' | sudo tee -a /etc/environment >> /dev/null",
+      "echo 'POSTGRES_HOST=${var.POSTGRES_HOST}' | sudo tee -a /etc/environment >> /dev/null",
+      "echo 'POSTGRES_PORT=${var.POSTGRES_PORT}' | sudo tee -a /etc/environment >> /dev/null",
       "echo 'export env done'",
-      "sleep 60",
+      "sleep 180",
+      "docker ps",
+      "export $(cat /etc/environment) >> /dev/null", 
       "docker images -a",
       "docker system prune -f",
       "docker-compose up -d"

@@ -1,6 +1,7 @@
 resource "yandex_compute_instance" "monitor-host" {
     platform_id        = "standard-v2"
     service_account_id = yandex_iam_service_account.service-accounts["sagrityanin1"].id
+    name = "diag-host"
     resources {
       cores         = 2
       memory        = 1
