@@ -15,7 +15,7 @@ resource "yandex_lb_network_load_balancer" "foo" {
     target_group_id = yandex_compute_instance_group.bingo-worker-group.load_balancer.0.target_group_id
     healthcheck {
       name = "bingo-check"
-      interval            = 2
+      interval            = 1
       timeout             = 1
       unhealthy_threshold = 2
       healthy_threshold   = 2
