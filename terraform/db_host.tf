@@ -54,6 +54,9 @@ resource "yandex_compute_instance" "bingo-db" {
       {
         folder_id   = "${local.folder_id}",
         registry_id = "${yandex_container_registry.registry1.id}",
+        POSTGRES_PASSWORD = "${var.POSTGRES_PASSWORD}"
+        POSTGRES_USER     = "${var.POSTGRES_USER}"
+        POSTGRES_DB       = "${var.POSTGRES_DB}"
       }
     )
     ssh-keys  = "ubuntu:${file("~/.ssh/id_rsa.pub")}"     
@@ -77,20 +80,13 @@ resource "yandex_compute_instance" "bingo-db" {
       host = self.network_interface[0].nat_ip_address
     }
     inline = [
-      "cd /home/ubuntu",
       "echo 'POSTGRES_PASSWORD=${var.POSTGRES_PASSWORD}' | sudo tee -a /etc/environment >> /dev/null",
       "echo 'POSTGRES_USER=${var.POSTGRES_USER}' | sudo tee -a /etc/environment >> /dev/null",
       "echo 'POSTGRES_DB=${var.POSTGRES_DB}' | sudo tee -a /etc/environment >> /dev/null",
-      "echo 'POSTGRES_HOST=${var.POSTGRES_HOST}' | sudo tee -a /etc/environment >> /dev/null",
-      "echo 'POSTGRES_PORT=${var.POSTGRES_PORT}' | sudo tee -a /etc/environment >> /dev/null",
-      "echo 'export env done'",
-      "sleep 180",
-      "docker ps",
       "export $(cat /etc/environment) >> /dev/null", 
-      "docker images -a",
-      "docker system prune -f",
-      "docker-compose up -d"
-      
+      "echo 'export env done'",
+      "sleep 50",
+      "docker ps",     
     ]
   }
 }

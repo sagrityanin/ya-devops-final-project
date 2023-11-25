@@ -55,7 +55,6 @@ locals {
     "container-registry.images.puller",
     "container-registry.viewer",
     "monitoring.editor",
-    "container-registry.admin",
     "compute.editor",
     "iam.serviceAccounts.user",
   ])
