@@ -3,8 +3,8 @@ cat > /opt/bingo/config.yaml <<EOF
 student_email: andrey@dynfor.ru
 postgres_cluster:
   hosts:
-  - address: $POSTGRES_HOST
-    port: $POSTGRES_PORT
+  - address: bingo_db
+    port: 5432
   user: $POSTGRES_USER
   password: $POSTGRES_PASSWORD
   db_name: $POSTGRES_DB
@@ -17,5 +17,5 @@ sleep 20
 echo "Start prepare db"
 ./bingo prepare_db
 export PGPASSWORD=$POSTGRES_PASSWORD
-psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER \
+psql -h bingo_db -p 5432 -U $POSTGRES_USER \
 -d $POSTGRES_DB < create_index.sql
