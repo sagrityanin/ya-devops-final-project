@@ -61,32 +61,4 @@ resource "yandex_compute_instance" "bingo-db" {
     )
     ssh-keys  = "ubuntu:${file("~/.ssh/id_rsa.pub")}"     
   }
-  
-  provisioner "file" {
-    source      = "../db_host/docker-compose.yaml"
-    destination = "/home/ubuntu/docker-compose.yaml"
-    connection {
-      type     = "ssh"
-      user     = "ubuntu"
-      private_key = file(var.private_key_path)
-      host = self.network_interface[0].nat_ip_address
-    }
-  }
-  provisioner "remote-exec" {
-    connection {
-      type     = "ssh"
-      user     = "ubuntu"
-      private_key = file(var.private_key_path)
-      host = self.network_interface[0].nat_ip_address
-    }
-    inline = [
-      "echo 'POSTGRES_PASSWORD=${var.POSTGRES_PASSWORD}' | sudo tee -a /etc/environment >> /dev/null",
-      "echo 'POSTGRES_USER=${var.POSTGRES_USER}' | sudo tee -a /etc/environment >> /dev/null",
-      "echo 'POSTGRES_DB=${var.POSTGRES_DB}' | sudo tee -a /etc/environment >> /dev/null",
-      "export $(cat /etc/environment) >> /dev/null", 
-      "echo 'export env done'",
-      "sleep 50",
-      "docker ps",     
-    ]
-  }
 }
