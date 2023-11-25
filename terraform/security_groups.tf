@@ -62,6 +62,18 @@ resource "yandex_vpc_security_group" "group1" {
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
+    description = "test"
+    port   = 80
+    protocol    = "Tcp"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "test"
+    port = 443
+    protocol    = "Tcp"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
     description = "dns"
     port   = 53
     protocol    = "Udp"

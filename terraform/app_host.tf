@@ -22,7 +22,7 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
     network_interface {
       network_id = yandex_vpc_network.foo.id
       subnet_ids = ["${yandex_vpc_subnet.foo.id}"]
-      nat = false
+      nat = true
       security_group_ids = ["${yandex_vpc_security_group.group1.id}",]
     }
     scheduling_policy {
@@ -44,7 +44,7 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
   }
   scale_policy {
     fixed_scale {
-      size = 2
+      size = 1
     }
   }
   allocation_policy {
