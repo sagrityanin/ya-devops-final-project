@@ -4,9 +4,9 @@ cat tf_key.json | docker login \
   --password-stdin \
   cr.yandex
 
-docker push cr.yandex/crps6iajan0jje7v30hd/catgpt:myapp
+docker push cr.yandex/crps6iajan0jje7v30hd/bingo:myapp
 
-docker build . -t cr.yandex/crps6iajan0jje7v30hd/catgpt:myapp
+docker build . -t cr.yandex/crps6iajan0jje7v30hd/bingo:myapp
 
 ## Tunnel to VM
 
