@@ -26,7 +26,7 @@ resource "yandex_vpc_security_group" "group1" {
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description = "Allow Inbound ssh"
+    description = "Allow Inbound http"
     port   = 8000
     protocol    = "any"
     v4_cidr_blocks = ["0.0.0.0/0"]
