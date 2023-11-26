@@ -1,8 +1,8 @@
 version: '3.7'
 services:
-  catgpt:
-    container_name: catgpt
-    image: "cr.yandex/crps6iajan0jje7v30hd/catgpt:myapp"
+  bingo:
+    container_name: bingo
+    image: "cr.yandex/crps6iajan0jje7v30hd/bingo:myapp"
     restart: always
     network_mode: "host"
   unifiedagent:

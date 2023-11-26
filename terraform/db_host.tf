@@ -48,7 +48,6 @@ resource "yandex_compute_instance" "bingo-db" {
     }
   }
   metadata = {
-    test-var: "${var.POSTGRES_DB}"
     docker-compose = templatefile(
       "${path.module}/../db_host/docker-compose.yaml",
       {
