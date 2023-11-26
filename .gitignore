@@ -10,3 +10,4 @@ terraform/tf_key.json
 terraform/.terraform
 terraform/bingo.tfvars
 terraform/.terraform.tfstate.lock.info
+app/nginx_source

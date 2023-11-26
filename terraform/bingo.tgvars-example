@@ -1,0 +1,5 @@
+POSTGRES_PASSWORD = <postgers password>
+POSTGRES_USER = <postgres username>
+POSTGRES_DB = <postgres db name>
+POSTGRES_HOST = <postgres ip>
+POSTGRES_PORT = <postgres port>

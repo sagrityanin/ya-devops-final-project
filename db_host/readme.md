@@ -2,11 +2,13 @@
 - docker build ./db_host/postgres -t cr.yandex/crpgs3g59it0ouonuleo/bingo:db
 - docker build ./db_host/app -t cr.yandex/crpgs3g59it0ouonuleo/bingo:init
 - docker build ./app -t cr.yandex/crpgs3g59it0ouonuleo/bingo:app
+- docker build ./app/nginx -t cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
 
 ## Push images
 - docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:db
 - docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:init
 - docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:app
+- docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
 
 ## Если через 5 минут после создания виртуали с приложением не заработают следует проделать следующие действия
 - по ssh зайти на виртуалку с BD
