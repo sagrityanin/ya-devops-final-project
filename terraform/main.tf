@@ -21,7 +21,7 @@ resource "yandex_vpc_subnet" "foo" {
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.foo.id
   route_table_id = yandex_vpc_route_table.rt.id
-  v4_cidr_blocks = ["10.5.0.0/24"]
+  v4_cidr_blocks = ["10.15.0.0/24"]
 }
 resource "yandex_vpc_subnet" "ext" {
   zone           = "ru-central1-a"

@@ -37,7 +37,7 @@ resource "yandex_compute_instance" "bingo-db" {
   network_interface {
     security_group_ids = ["${yandex_vpc_security_group.group1.id}",]
     subnet_id = yandex_vpc_subnet.foo.id
-    nat = false
+    nat = true
   }
   name = "bingo-db"
   boot_disk {

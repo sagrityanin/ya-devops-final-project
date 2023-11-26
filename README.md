@@ -20,7 +20,7 @@
 - docker build ./db_host/postgres -t cr.yandex/crpgs3g59it0ouonuleo/bingo:db
 - docker build ./db_host/app -t cr.yandex/crpgs3g59it0ouonuleo/bingo:init
 - docker build ./app -t cr.yandex/crpgs3g59it0ouonuleo/bingo:app
-- docker build ./app/nginx -t cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
+- docker build ./nginx -t cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
 
 ### Заливка образов в container registry c учетом id container registry
 - docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:db
@@ -38,3 +38,5 @@
 ### Эти DNS записи я создавал взяв ip из консоли управления облаком
 
 ### Через 10 минут конейнер bingo_init на виртуалке bingk-db призведет первоначальное наполнение базы данных и создаст индексы. При желании можно использовать любую внешний сервер postgresql через db.info66.ru  c указанием соответствующих переменных в **terraform/bingo.tfvars**
+
+## Для обработки запросов /api/session произвел оптимизацию postgresql по [статье] (http://bingo.info66.ru/api/session)

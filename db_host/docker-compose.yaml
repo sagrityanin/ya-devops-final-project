@@ -19,9 +19,15 @@ services:
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     ports:
       - 5432:5432
+    deploy:
+      resources:
+        limits:
+          cpus: '3'
+          memory: 5000M
     volumes:
       - bingo_db:/var/lib/postgresql/data
       - ./postgres/config:/docker-entrypoint-initdb.d/
+      
     
 
   bingo_init:

@@ -2,30 +2,13 @@ variable "listeners" {
   description = "Network load balancer listeners"
   type        = list
   default = [
-    {
-      name        = "listen443",
-      port        = 443,
-      target_port = 443,
-      protocol    = "tcp",
-      
-    },
+    
     {
       name        = "listen80",
       port        = 80,
       target_port = 8000,
       protocol    = "tcp",
       
-    }
-  ]
-}
-variable "healthchecks" {
-  description = "Network load balancer healthchecks"
-  type        = list
-  default = [
-    {
-      check_name  = "check443"
-      target_port = 443,
-      protocol    = "tcp",
     }
   ]
 }
