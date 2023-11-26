@@ -39,4 +39,4 @@
 
 ### Через 10 минут конейнер bingo_init на виртуалке bingk-db призведет первоначальное наполнение базы данных и создаст индексы. При желании можно использовать любую внешний сервер postgresql через db.info66.ru  c указанием соответствующих переменных в **terraform/bingo.tfvars**
 
-## Для обработки запросов /api/session произвел оптимизацию postgresql по [статье] (http://bingo.info66.ru/api/session)
+## Для обработки запросов /api/session произвел оптимизацию postgresql по [статье](http://bingo.info66.ru/api/session)
