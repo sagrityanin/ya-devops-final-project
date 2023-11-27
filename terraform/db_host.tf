@@ -29,7 +29,7 @@ resource "yandex_compute_instance" "bingo-db" {
   resources {
     cores         = 2
     memory        = 1
-    core_fraction = 5
+    core_fraction = 50
   }
   scheduling_policy {
     preemptible = true
@@ -37,9 +37,10 @@ resource "yandex_compute_instance" "bingo-db" {
   network_interface {
     security_group_ids = ["${yandex_vpc_security_group.group1.id}",]
     subnet_id = yandex_vpc_subnet.foo.id
+    ip_address = "10.15.0.250"
     nat = true
   }
-  name = "bingo-db"
+  name = "bingo--db"
   boot_disk {
     initialize_params {
       type = "network-hdd"

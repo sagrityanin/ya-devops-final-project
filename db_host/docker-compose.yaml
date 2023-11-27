@@ -22,13 +22,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '3'
-          memory: 5000M
+          cpus: '1.5'
+          memory: 1536M
     volumes:
       - bingo_db:/var/lib/postgresql/data
-      - ./postgres/config:/docker-entrypoint-initdb.d/
-      
-    
 
   bingo_init:
     container_name: bingo_init

@@ -4,7 +4,6 @@ services:
   bingo_app:
     container_name: bingo_app
     image: cr.yandex/crpgs3g59it0ouonuleo/bingo:app
-    build: ./app
     ports:
       - 8000:32531
 
