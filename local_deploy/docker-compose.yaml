@@ -55,6 +55,78 @@ services:
       start_period: 30s
     restart: always
 
+  bingo_app4:
+    container_name: bingo_app4
+    build: ./app
+    ports:
+      - 8004:32531
+    labels:
+      - "autoheal=true"
+    networks:
+      bingo:
+        ipv4_address: 10.15.0.204
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 2
+      start_period: 30s
+    restart: always
+  
+  bingo_app5:
+    container_name: bingo_app5
+    build: ./app
+    ports:
+      - 8005:32531
+    labels:
+      - "autoheal=true"
+    networks:
+      bingo:
+        ipv4_address: 10.15.0.205
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 2
+      start_period: 30s
+    restart: always
+
+  bingo_app6:
+    container_name: bingo_app6
+    build: ./app
+    ports:
+      - 8006:32531
+    labels:
+      - "autoheal=true"
+    networks:
+      bingo:
+        ipv4_address: 10.15.0.206
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 2
+      start_period: 30s
+    restart: always
+
+  bingo_app7:
+    container_name: bingo_app7
+    build: ./app
+    ports:
+      - 8007:32531
+    labels:
+      - "autoheal=true"
+    networks:
+      bingo:
+        ipv4_address: 10.15.0.207
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 2
+      start_period: 30s
+    restart: always
+
   autoheal:
     image: willfarrell/autoheal
     container_name: autoheal
