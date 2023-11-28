@@ -14,3 +14,4 @@ app/nginx_source
 local_deploy/docker_check.py
 
 app_test/docker_check.py
+local_deploy/*.log
