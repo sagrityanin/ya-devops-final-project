@@ -2,13 +2,17 @@ variable "listeners" {
   description = "Network load balancer listeners"
   type        = list
   default = [
-    
+    {
+      name        = "listen443",
+      port        = 443,
+      target_port = 443,
+      protocol    = "tcp",
+    },
     {
       name        = "listen80",
       port        = 80,
-      target_port = 8000,
+      target_port = 80,
       protocol    = "tcp",
-      
     }
   ]
 }
@@ -37,8 +41,8 @@ resource "yandex_lb_network_load_balancer" "foo" {
       unhealthy_threshold = 2
       healthy_threshold   = 2
       http_options {
-        port = 8000
-        path = "/"
+        port = 80
+        path = "/api/movie"
       }
     }
   }

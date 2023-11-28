@@ -28,8 +28,8 @@ resource "yandex_compute_instance" "bingo-db" {
   service_account_id = yandex_iam_service_account.service-accounts["sagrityanin1"].id
   resources {
     cores         = 2
-    memory        = 1
-    core_fraction = 50
+    memory        = 2
+    core_fraction = 20
   }
   scheduling_policy {
     preemptible = true
@@ -40,7 +40,7 @@ resource "yandex_compute_instance" "bingo-db" {
     ip_address = "10.15.0.250"
     nat = true
   }
-  name = "bingo--db"
+  name = "bingo-db"
   boot_disk {
     initialize_params {
       type = "network-hdd"
@@ -59,6 +59,6 @@ resource "yandex_compute_instance" "bingo-db" {
         POSTGRES_DB       = "${var.POSTGRES_DB}"
       }
     )
-    ssh-keys  = "ubuntu:${file("~/.ssh/id_rsa.pub")}"     
+    ssh-keys  = "andrey:${file("~/.ssh/id_rsa.pub")}"     
   }
 }

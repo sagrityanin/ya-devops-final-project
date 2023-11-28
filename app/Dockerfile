@@ -16,5 +16,6 @@ COPY --from=build /opt/bingo /opt/bingo/
 COPY --from=build /opt/bongo /opt/bongo/
 COPY --from=build /etc/passwd /etc/
 EXPOSE 32531
+RUN apk add curl
 USER ubuntu
 CMD ["/bingo", "run_server"]

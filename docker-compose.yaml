@@ -6,12 +6,32 @@ services:
     image: cr.yandex/crpgs3g59it0ouonuleo/bingo:app
     ports:
       - 8000:32531
+    labels:
+      - "autoheal=true"
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 2
+      start_period: 30s
+    restart: on-failure
+  
+  autoheal:
+    image: willfarrell/autoheal
+    container_name: autoheal
+    restart: always
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: "autoheal"
+      AUTOHEAL_INTERVAL: "5"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
-  # nginx:
-  #   container_name: bingo_proxy
-  #   depends_on:
-  #     - bingo_app
-  #   image: cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
-  #   ports:
-  #     - 80:80
-  #     - 443:443
+  nginx:
+    container_name: bingo_proxy
+    depends_on:
+      - bingo_app
+    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
+    restart: always
+    ports:
+      - 80:80
+      - 443:443

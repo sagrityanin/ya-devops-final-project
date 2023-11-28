@@ -22,7 +22,7 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
     network_interface {
       network_id = yandex_vpc_network.foo.id
       subnet_ids = ["${yandex_vpc_subnet.foo.id}"]
-      nat = false
+      nat = true
       security_group_ids = ["${yandex_vpc_security_group.group1.id}",]
     }
     scheduling_policy {
@@ -39,12 +39,12 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
         }
       )
       user-data = file("${path.module}/cloud-config.yaml")
-      ssh-keys  = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+      ssh-keys  = "andrey:${file("~/.ssh/id_rsa.pub")}"
     }
   }
   scale_policy {
     fixed_scale {
-      size = 2
+      size = 3
     }
   }
   allocation_policy {
