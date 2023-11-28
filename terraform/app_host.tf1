@@ -6,7 +6,7 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
   service_account_id = yandex_iam_service_account.service-accounts["bingo-ig-sa"].id
   instance_template {
     platform_id = "standard-v2"
-    name = "bingo-a-worker-{instance.short_id}"
+    name = "bingo-worker-{instance.short_id}"
     resources {
       cores         = 2
       memory        = 1
@@ -22,6 +22,7 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
     network_interface {
       network_id = yandex_vpc_network.foo.id
       subnet_ids = ["${yandex_vpc_subnet.foo.id}"]
+      ip_address = "10.15.0.20{instance.index}"
       nat = false
       security_group_ids = ["${yandex_vpc_security_group.group1.id}",]
     }
@@ -39,12 +40,12 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
         }
       )
       user-data = file("${path.module}/cloud-config.yaml")
-      ssh-keys  = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+      ssh-keys  = "andrey:${file("~/.ssh/id_rsa.pub")}"
     }
   }
   scale_policy {
     fixed_scale {
-      size = 2
+      size = 3
     }
   }
   allocation_policy {

@@ -1,0 +1,12 @@
+
+services:
+
+  nginx:
+    container_name: bingo_proxy
+    depends_on:
+      - bingo_app
+    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
+    ports:
+      - 80:80
+      - 443:443
+  

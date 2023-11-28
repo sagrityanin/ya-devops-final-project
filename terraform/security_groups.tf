@@ -35,13 +35,25 @@ resource "yandex_vpc_security_group" "group1" {
     description = "Allow in postgresql connection"
     port   = 5432
     protocol    = "tcp"
-    v4_cidr_blocks = ["10.5.0.0/24"]
+    v4_cidr_blocks = ["10.15.0.0/24"]
+  }
+  egress {
+    description = "Allow in postgresql connection"
+    port   = 5432
+    protocol    = "tcp"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    description = "vpn"
+    port   = 1195
+    protocol    = "udp"
+    v4_cidr_blocks = ["45.153.68.133/32"]
   }
   egress {
     description = "Allow out postgresql connection"
     port   = 5432
     protocol    = "tcp"
-    v4_cidr_blocks = ["10.5.0.0/24"]
+    v4_cidr_blocks = ["10.15.0.0/24"]
   }
   egress {
     description = "Allow out https connection"
