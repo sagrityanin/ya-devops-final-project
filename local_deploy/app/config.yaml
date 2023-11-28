@@ -1,0 +1,10 @@
+student_email: andrey@dynfor.ru
+postgres_cluster:
+  hosts:
+  - address: 192.168.0.101
+    port: 5432
+  user: andrey
+  password: 123qwe
+  db_name: bingo
+  ssl_mode: disable
+  use_closest_node: false

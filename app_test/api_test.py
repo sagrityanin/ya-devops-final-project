@@ -6,12 +6,12 @@ start_time = time()
 for i in range(1000):
     # url = f"http://bingo.info66.ru/db_dummy"
 
-    url = f"http://51.250.86.239/api/customer/{i}"
+    url = f"http://127.0.0.1/api/customer/{i}"
     res = requests.get(url)
     if res.status_code != 200:
         print(res.status_code)
     else:
         print(i)
-    sleep(1)
+    sleep(0.5)
 
 print(f"Spend time: {time() - start_time} sec")

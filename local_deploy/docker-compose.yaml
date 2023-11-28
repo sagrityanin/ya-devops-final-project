@@ -1,0 +1,93 @@
+version: '3'
+
+services:
+  bingo_app1:
+    container_name: bingo_app1
+    build: ./app
+    ports:
+      - 8001:32531
+    labels:
+      - "autoheal=true"
+    networks:
+      bingo:
+        ipv4_address: 10.15.0.201
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 2
+      start_period: 30s
+    restart: always
+  
+  bingo_app2:
+    container_name: bingo_app2
+    build: ./app
+    ports:
+      - 8002:32531
+    labels:
+      - "autoheal=true"
+    networks:
+      bingo:
+        ipv4_address: 10.15.0.202
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 2
+      start_period: 30s
+    restart: always
+
+  bingo_app3:
+    container_name: bingo_app3
+    build: ./app
+    ports:
+      - 8003:32531
+    labels:
+      - "autoheal=true"
+    networks:
+      bingo:
+        ipv4_address: 10.15.0.203
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
+      interval: 1s
+      timeout: 1s
+      retries: 2
+      start_period: 30s
+    restart: always
+
+  autoheal:
+    image: willfarrell/autoheal
+    container_name: autoheal
+    restart: always
+    networks:
+      - bingo
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: "autoheal"
+      AUTOHEAL_INTERVAL: "5"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  nginx:
+    container_name: bingo_proxy
+    build: ./nginx
+    depends_on:
+      - bingo_app1
+      - bingo_app2
+      - bingo_app3
+    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
+    restart: always
+    networks:
+      - bingo
+    ports:
+      - 80:80
+      - 443:443
+
+networks:
+  bingo:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.15.0.0/24
