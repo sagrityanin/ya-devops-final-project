@@ -21,12 +21,14 @@
 - docker build ./db_host/app -t cr.yandex/crpgs3g59it0ouonuleo/bingo:init
 - docker build ./app -t cr.yandex/crpgs3g59it0ouonuleo/bingo:app
 - docker build ./nginx -t cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
+- docker build ./nginx_lb -t cr.yandex/crpgs3g59it0ouonuleo/bingo:nginx-lb
 
 ### Заливка образов в container registry c учетом id container registry
 - docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:db
 - docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:init
 - docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:app
 - docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
+- docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:nginx-lb
 
 ### Создать всю оставшуюся инфраструктуру
 - terraform apply -var-file=bingo.tfvars

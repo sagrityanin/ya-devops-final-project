@@ -1,0 +1,11 @@
+
+services:
+
+  nginx:
+    container_name: bingo_lb
+    restart: always
+    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:nginx-lb
+    ports:
+      - 80:80
+      - 443:443
+  
