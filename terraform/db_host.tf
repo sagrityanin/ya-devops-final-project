@@ -38,7 +38,7 @@ resource "yandex_compute_instance" "bingo-db" {
     security_group_ids = ["${yandex_vpc_security_group.group1.id}",]
     subnet_id = yandex_vpc_subnet.foo.id
     ip_address = "10.15.0.250"
-    nat = true
+    nat = false
   }
   name = "bingo-db"
   boot_disk {
