@@ -1,7 +1,7 @@
 student_email: andrey@dynfor.ru
 postgres_cluster:
   hosts:
-  - address: 192.168.0.101
+  - address: 10.15.0.1
     port: 5432
   user: andrey
   password: 123qwe

@@ -6,7 +6,7 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
   service_account_id = yandex_iam_service_account.service-accounts["bingo-ig-sa"].id
   instance_template {
     platform_id = "standard-v2"
-    name = "bingo-worker-a-{instance.short_id}"
+    name = "bingo-worker-{instance.short_id}"
     resources {
       cores         = 2
       memory        = 1
@@ -45,7 +45,7 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
   }
   scale_policy {
     fixed_scale {
-      size = 3
+      size = 2
     }
   }
   allocation_policy {

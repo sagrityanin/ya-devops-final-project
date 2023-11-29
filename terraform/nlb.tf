@@ -20,6 +20,7 @@ variable "listeners" {
 resource "yandex_lb_network_load_balancer" "foo" {
   name = "sagrityanin-lb"
   deletion_protection = "false"
+  type = "internal"
   dynamic "listener" {
     for_each = var.listeners
     content {
@@ -27,8 +28,9 @@ resource "yandex_lb_network_load_balancer" "foo" {
       port                  = listener.value["port"]
       target_port           = listener.value["target_port"]
       protocol              = listener.value["protocol"]
-      external_address_spec {
+      internal_address_spec {
         ip_version = "ipv4"
+        subnet_id = yandex_vpc_subnet.foo.id
       }
     }
   }
@@ -41,7 +43,7 @@ resource "yandex_lb_network_load_balancer" "foo" {
       unhealthy_threshold = 2
       healthy_threshold   = 2
       http_options {
-        port = 80
+        port = 8000
         path = "/api/movie"
       }
     }
