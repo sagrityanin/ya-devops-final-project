@@ -1,0 +1,10 @@
+student_email: andrey@dynfor.ru
+postgres_cluster:
+  hosts:
+  - address: <postgres ip>
+    port: <postgres port>
+  user: <postgres username>
+  password: <postgres password>
+  db_name: <postgres db name>
+  ssl_mode: disable
+  use_closest_node: false

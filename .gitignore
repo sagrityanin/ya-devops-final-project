@@ -11,3 +11,9 @@ terraform/.terraform
 terraform/bingo.tfvars
 terraform/.terraform.tfstate.lock.info
 app/nginx_source
+local_deploy/docker_check.py
+
+app_test/docker_check.py
+local_deploy/*.log
+app_test
+local_deploy/nginx/logs/*.log

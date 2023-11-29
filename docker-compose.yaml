@@ -1,4 +1,3 @@
-version: '3'
 
 services:
   bingo_app:
@@ -8,6 +7,8 @@ services:
       - 8000:32531
     labels:
       - "autoheal=true"
+    networks:
+      - bingo_app
     healthcheck:
       test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
       interval: 1s
@@ -23,6 +24,8 @@ services:
     environment:
       AUTOHEAL_CONTAINER_LABEL: "autoheal"
       AUTOHEAL_INTERVAL: "5"
+    networks:
+      - bingo_app
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
@@ -32,6 +35,17 @@ services:
       - bingo_app
     image: cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
     restart: always
+    networks:
+      - bingo_app
     ports:
       - 80:80
-      - 443:443
+
+networks:
+  bingo_app:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.25.0.0/24

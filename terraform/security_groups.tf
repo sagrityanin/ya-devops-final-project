@@ -26,9 +26,27 @@ resource "yandex_vpc_security_group" "group1" {
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
+    description = "Allow Inbound ssh"
+    port   = 22
+    protocol    = "any"
+    v4_cidr_blocks = ["10.15.0.0/24"]
+  }
+  egress {
+    description = "Allow Inbound ssh"
+    port   = 22
+    protocol    = "any"
+    v4_cidr_blocks = ["10.15.0.0/24"]
+  }
+  ingress {
     description = "Allow Inbound http"
     port   = 8000
-    protocol    = "any"
+    protocol    = "tcp"
+    v4_cidr_blocks = ["10.15.0.0/24"]
+  }
+  ingress {
+    description = "Allow Inbound http"
+    port   = 8000
+    protocol    = "tcp"
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
@@ -71,7 +89,13 @@ resource "yandex_vpc_security_group" "group1" {
     description = "Allow out http connection"
     port   = 8000
     protocol    = "tcp"
-    v4_cidr_blocks = ["0.0.0.0/0"]
+    v4_cidr_blocks = ["10.15.0.0/24"]
+  }
+  egress {
+    description = "Allow out http connection"
+    port   = 8000
+    protocol    = "tcp"
+    v4_cidr_blocks = ["0.0.0.0/24"]
   }
   ingress {
     description = "test"
