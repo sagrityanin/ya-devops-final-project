@@ -15,9 +15,5 @@ local_deploy/docker_check.py
 
 app_test/docker_check.py
 local_deploy/*.log
-app_test/access80.log
-app_test/check_log.py
-app_test/url_test.py
-app_test/res.txt
-app_test/api_test_from_file.py
+app_test
 local_deploy/nginx/logs/*.log
