@@ -29,16 +29,16 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  nginx:
-    container_name: bingo_proxy
-    depends_on:
-      - bingo_app
-    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
-    restart: always
-    networks:
-      - bingo_app
-    ports:
-      - 80:80
+  # nginx:
+  #   container_name: bingo_proxy
+  #   depends_on:
+  #     - bingo_app
+  #   image: cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
+  #   restart: always
+  #   networks:
+  #     - bingo_app
+  #   ports:
+  #     - 80:80
 
 networks:
   bingo_app:

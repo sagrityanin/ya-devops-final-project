@@ -6,7 +6,7 @@ resource "yandex_compute_instance_group" "bingo-nginx-lb" {
   service_account_id = yandex_iam_service_account.service-accounts["bingo-ig-sa"].id
   instance_template {
     platform_id = "standard-v2"
-    name = "bingo-nginx-lb-{instance.short_id}"
+    name = "bingo-nginx-nlb-{instance.short_id}"
     resources {
       cores         = 2
       memory        = 1
