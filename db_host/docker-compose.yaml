@@ -12,7 +12,7 @@ services:
     container_name: bingo_db
     networks:
       - backend
-    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:db
+    image: cr.yandex/${registry_id}/bingo:db
     environment:
       POSTGRES_DB: "${POSTGRES_DB}"
       POSTGRES_USER: "${POSTGRES_USER}"
@@ -31,7 +31,7 @@ services:
     container_name: bingo_init
     networks:
       - backend
-    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:init
+    image: cr.yandex/${registry_id}/bingo:init
     depends_on:
       - bingo_db
     environment:

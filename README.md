@@ -32,16 +32,16 @@
  - terraform apply -var-file=bingo.tfvars -target=yandex_container_registry.registry1
 
 ### Создание образов c учетом id container registry
-- docker build ./db_host/postgres -t cr.yandex/crpgs3g59it0ouonuleo/bingo:db
-- docker build ./db_host/app -t cr.yandex/crpgs3g59it0ouonuleo/bingo:init
-- docker build ./app -t cr.yandex/crpgs3g59it0ouonuleo/bingo:app
-- docker build ./nginx_lb -t cr.yandex/crpgs3g59it0ouonuleo/bingo:nginx-lb
+- docker build ./db_host/postgres -t cr.yandex/${registry_id}/bingo:db
+- docker build ./db_host/app -t cr.yandex/${registry_id}/bingo:init
+- docker build ./app -t cr.yandex/${registry_id}/bingo:app
+- docker build ./nginx_lb -t cr.yandex/${registry_id}/bingo:nginx-lb
 
 ### Заливка образов в container registry c учетом id container registry
-- docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:db
-- docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:init
-- docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:app
-- docker push cr.yandex/crpgs3g59it0ouonuleo/bingo:nginx-lb
+- docker push cr.yandex/${registry_id}/bingo:db
+- docker push cr.yandex/${registry_id}/bingo:init
+- docker push cr.yandex/${registry_id}/bingo:app
+- docker push cr.yandex/${registry_id}/bingo:nginx-lb
 
 ### Создать всю оставшуюся инфраструктуру
 - terraform apply -var-file=bingo.tfvars

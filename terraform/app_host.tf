@@ -33,7 +33,7 @@ resource "yandex_compute_instance_group" "bingo-worker-group" {
 
     metadata = {
       docker-compose = templatefile(
-        "${path.module}/../docker-compose.yaml",
+        "${path.module}/../app/docker-compose.yaml",
         {
           folder_id   = "${local.folder_id}",
           registry_id = "${yandex_container_registry.registry1.id}",

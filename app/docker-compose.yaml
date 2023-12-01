@@ -2,7 +2,7 @@
 services:
   bingo_app:
     container_name: bingo_app
-    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:app
+    image: cr.yandex/${registry_id}/bingo:app
     ports:
       - 8000:32531
     labels:
