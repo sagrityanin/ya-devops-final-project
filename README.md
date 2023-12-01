@@ -77,4 +77,4 @@
 - аналогично сорать все IP yandex_compute_instance_group.bingo-worker-group и из этого списка формировать upstream для конфига nginx в yandex_compute_instance.bingo-nlb и передать в виде переменной
 
 ## PS
-В последний день были урезаны квоты в яндекс облаке, поэтому запускал проект с вырезаными **sequruty groups**
+В последний день были урезаны квоты в яндекс облаке, поэтому запускал проект с вырезаными **security groups**
