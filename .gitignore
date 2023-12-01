@@ -20,3 +20,4 @@ local_deploy/nginx/logs/*.log
 local_deploy/nginx/ssl-l/*.pem
 local_deploy/nginx/ssl/*.pem
 terraform/terraform.tfstate.1701393179.backup
+nginx_lb/ssl/*.pem
