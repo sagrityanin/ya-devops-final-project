@@ -1,0 +1,18 @@
+filebeat.inputs:
+
+- type: log
+  enabled: true
+  paths:
+    - /log/access80.log
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+output.logstash:
+  enable: true
+  hosts: 10.10.0.3:5044
+
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded

@@ -14,7 +14,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
+          cpus: '1'
     volumes:
       - ./app/config.yaml:/opt/bingo/config.yaml
     healthcheck:
@@ -38,7 +38,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
+          cpus: '1'
     volumes:
       - ./app/config.yaml:/opt/bingo/config.yaml
     healthcheck:
@@ -62,7 +62,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
+          cpus: '1'
     volumes:
       - ./app/config.yaml:/opt/bingo/config.yaml
     healthcheck:
@@ -93,11 +93,23 @@ services:
       - bingo_app2
       - bingo_app3
     restart: always
+    volumes:
+      - nginx_log:/var/log/nginx
     networks:
       - bingo
     ports:
       - 80:80
       - 443:443
+  
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.17.10
+    container_name: filebeat
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - nginx_log:/log:ro
+    networks:
+      - bingo
+
 
 networks:
   bingo:
@@ -108,3 +120,6 @@ networks:
       driver: default
       config:
       - subnet: 10.15.0.0/24
+
+volumes:
+  nginx_log:
