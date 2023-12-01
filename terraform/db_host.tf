@@ -62,3 +62,6 @@ resource "yandex_compute_instance" "bingo-db" {
     ssh-keys  = "andrey:${file("~/.ssh/id_rsa.pub")}"     
   }
 }
+output "db_instance_ip" {
+  value = yandex_compute_instance.bingo-nlb.network_interface[0].ip_address
+}

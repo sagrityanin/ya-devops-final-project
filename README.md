@@ -73,7 +73,7 @@
 
 ## Дальнейшие шаги
 ### Избавление от хардкода
-- передавать ip postgresql-сервера не через dns-имя, а формировать переменную из yandex_compute_instance.bingo-db.network_interface[0].<private_ip_address>  и передаать ее в контейнеры с бинарником
+- передавать ip postgresql-сервера не через dns-имя, а формировать переменную из yandex_compute_instance.bingo-db.network_interface[0].ip_address  и передаать ее в контейнеры с бинарником
 - аналогично сорать все IP yandex_compute_instance_group.bingo-worker-group и из этого списка формировать upstream для конфига nginx в yandex_compute_instance.bingo-nlb и передать в виде переменной
 
 ## PS
