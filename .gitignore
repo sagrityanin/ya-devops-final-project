@@ -17,5 +17,7 @@ app_test/docker_check.py
 local_deploy/*.log
 app_test
 local_deploy/nginx/logs/*.log
-local_deploy/nginx/ssl-l
-local_deploy/nginx/ssl
+local_deploy/nginx/ssl-l/*.pem
+local_deploy/nginx/ssl/*.pem
+terraform/terraform.tfstate.1701393179.backup
+nginx_lb/ssl/*.pem

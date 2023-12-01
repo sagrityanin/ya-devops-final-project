@@ -11,6 +11,10 @@ services:
     networks:
       bingo:
         ipv4_address: 10.15.0.201
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
     volumes:
       - ./app/config.yaml:/opt/bingo/config.yaml
     healthcheck:
@@ -31,6 +35,10 @@ services:
     networks:
       bingo:
         ipv4_address: 10.15.0.202
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
     volumes:
       - ./app/config.yaml:/opt/bingo/config.yaml
     healthcheck:
@@ -51,46 +59,10 @@ services:
     networks:
       bingo:
         ipv4_address: 10.15.0.203
-    volumes:
-      - ./app/config.yaml:/opt/bingo/config.yaml
-    healthcheck:
-      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
-      interval: 1s
-      timeout: 1s
-      retries: 2
-      start_period: 30s
-    restart: always
-
-  bingo_app4:
-    container_name: bingo_app4
-    build: ./app
-    ports:
-      - 8004:32531
-    labels:
-      - "autoheal=true"
-    networks:
-      bingo:
-        ipv4_address: 10.15.0.204
-    volumes:
-      - ./app/config.yaml:/opt/bingo/config.yaml
-    healthcheck:
-      test: curl --fail -s http://127.0.0.1:32531/api/movie || exit 1
-      interval: 1s
-      timeout: 1s
-      retries: 2
-      start_period: 30s
-    restart: always
-  
-  bingo_app5:
-    container_name: bingo_app5
-    build: ./app
-    ports:
-      - 8005:32531
-    labels:
-      - "autoheal=true"
-    networks:
-      bingo:
-        ipv4_address: 10.15.0.205
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
     volumes:
       - ./app/config.yaml:/opt/bingo/config.yaml
     healthcheck:
@@ -120,7 +92,6 @@ services:
       - bingo_app1
       - bingo_app2
       - bingo_app3
-    image: cr.yandex/crpgs3g59it0ouonuleo/bingo:proxy
     restart: always
     networks:
       - bingo
