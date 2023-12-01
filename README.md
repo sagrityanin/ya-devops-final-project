@@ -35,17 +35,16 @@
 
 ### Если нужен https, создаем отдельно ssl-сертификат и помещем его файлы в nginx-lb/ssl
 
-### Создание образов c учетом id container registry
+### Создание и загрузка образов c учетом id container registry
 - docker build ./db_host/postgres -t cr.yandex/${registry_id}/bingo:db
 - docker build ./db_host/app -t cr.yandex/${registry_id}/bingo:init
 - docker build ./app -t cr.yandex/${registry_id}/bingo:app
 - docker build ./nginx_lb -t cr.yandex/${registry_id}/bingo:nginx-lb
-
-### Заливка образов в container registry c учетом id container registry
 - docker push cr.yandex/${registry_id}/bingo:db
 - docker push cr.yandex/${registry_id}/bingo:init
 - docker push cr.yandex/${registry_id}/bingo:app
 - docker push cr.yandex/${registry_id}/bingo:nginx-lb
+### Либо **bash upload_images.sh**
 
 ### Создать всю оставшуюся инфраструктуру
 - terraform apply -var-file=bingo.tfvars
