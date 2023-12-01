@@ -33,6 +33,8 @@
  - из вывода данной команды берем значение  **sagrityaninregistry_registry_id** и создаем переменную
     - export registry_id=<sagrityaninregistry_registry_id.value>
 
+### Если нужен https, создаем отдельно ssl-сертификат и помещем его файлы в nginx-lb/ssl
+
 ### Создание образов c учетом id container registry
 - docker build ./db_host/postgres -t cr.yandex/${registry_id}/bingo:db
 - docker build ./db_host/app -t cr.yandex/${registry_id}/bingo:init
