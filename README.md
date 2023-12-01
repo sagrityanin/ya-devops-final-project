@@ -12,7 +12,7 @@
 - Но не работают 3 url
 
 ### Для локального запуска настроил отправку логов запросов в стек ELK
-Результат работы сервиса Пети [тут](https://github.com/sagrityanin/ya-devops-final-project/blob/ELK/local_deploy/doc/metrics.png)
+Результат работы сервиса Пети [тут](https://github.com/sagrityanin/ya-devops-final-project/blob/main/local_deploy/doc/metrics.png)
 
 
 ## Запуск в Yandex-cloud приложения производится в следующей последовательности
