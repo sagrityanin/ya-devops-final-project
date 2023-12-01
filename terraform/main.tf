@@ -87,6 +87,8 @@ resource "yandex_resourcemanager_folder_iam_member" "bingo-ig-roles" {
 data "yandex_compute_image" "coi" {
   family = "container-optimized-image"
 }
-
+output "sagrityaninregistry_registry_id" {
+  value = yandex_container_registry.registry1.id
+}
 
 

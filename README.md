@@ -30,6 +30,8 @@
 
 ### Создать container registry
  - terraform apply -var-file=bingo.tfvars -target=yandex_container_registry.registry1
+ - из вывода данной команды берем значение  **sagrityaninregistry_registry_id** и создаем переменную
+    - export registry_id=<sagrityaninregistry_registry_id.value>
 
 ### Создание образов c учетом id container registry
 - docker build ./db_host/postgres -t cr.yandex/${registry_id}/bingo:db
@@ -50,7 +52,7 @@
 - **db.info66.ru**: база даных - приватный ip виртуалки bingo-db, жестко задан в манифесте terraform
 - **bingo.info66.ru**: приложение - внешний ip Nginx-LB
 
-### Эти DNS записи я создавал взяв ip из консоли управления облаком
+### Эти DNS записи я создавал взяв ip из output плследней команды
 
 ### Через 10 минут конейнер bingo_init на виртуалке bingo-db призведет первоначальное наполнение базы данных и создаст индексы. При желании можно использовать любую внешний сервер postgresql через db.info66.ru  c указанием соответствующих переменных в **terraform/bingo.tfvars** образец - terraform/bingo.tgvars-example
 

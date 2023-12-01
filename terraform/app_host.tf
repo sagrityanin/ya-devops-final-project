@@ -1,12 +1,13 @@
 resource "yandex_compute_instance_group" "bingo-worker-group" {
   name = "bingo-worker-group"
   depends_on = [
-    yandex_resourcemanager_folder_iam_member.bingo-ig-roles
+    yandex_resourcemanager_folder_iam_member.bingo-ig-roles,
+    yandex_compute_instance.bingo-db
   ]
   service_account_id = yandex_iam_service_account.service-accounts["bingo-ig-sa"].id
   instance_template {
     platform_id = "standard-v2"
-    name = "bingo-worker-a-{instance.short_id}"
+    name = "bingo-worker-{instance.short_id}"
     resources {
       cores         = 2
       memory        = 1
